@@ -36,7 +36,8 @@ DynamicLibrary tflitelib = () {
     return DynamicLibrary.process();
   } else {
     var binaryPath = dart_path.join(pathToBinaries, binaryName); // '$pathToBinaries/$binaryName';
-    var binaryFilePath = Uri(path: binaryPath).toFilePath();
-    return DynamicLibrary.open(binaryFilePath);
+    // var binaryFilePath = Uri(path: binaryPath).toFilePath();
+    var finalPath = dart_path.normalize(binaryPath);
+    return DynamicLibrary.open(finalPath);
   }
 }();
