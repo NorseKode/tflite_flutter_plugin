@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:io';
 
 const Set<String> _supported = {'linux', 'mac', 'win'};
+String pathToBinaries = '';
 
 String get binaryName {
   String os, ext;
@@ -33,9 +34,8 @@ DynamicLibrary tflitelib = () {
   } else if (Platform.isIOS) {
     return DynamicLibrary.process();
   } else {
-    final binaryPath = Platform.script.resolveUri(Uri.directory('.')).path +
-        'blobs/$binaryName';
-    final binaryFilePath = Uri(path: binaryPath).toFilePath();
+    var binaryPath = '$pathToBinaries/$binaryName';
+    var binaryFilePath = Uri(path: binaryPath).toFilePath();
     return DynamicLibrary.open(binaryFilePath);
   }
 }();

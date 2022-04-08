@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
 import 'package:flutter/services.dart';
 import 'package:quiver/check.dart';
+import 'package:tflite_flutter/src/bindings/dlib.dart';
 
 import 'bindings/interpreter.dart';
 import 'bindings/types.dart';
@@ -65,7 +66,8 @@ class Interpreter {
   ///   return fileOnDevice;
   /// }
   /// ```
-  factory Interpreter.fromFile(File modelFile, {InterpreterOptions? options}) {
+  factory Interpreter.fromFile(File modelFile, String pathToBinariesFolder, {InterpreterOptions? options}) {
+    pathToBinaries = pathToBinariesFolder;
     final model = Model.fromFile(modelFile.path);
     final interpreter = Interpreter._create(model, options: options);
     model.delete();
