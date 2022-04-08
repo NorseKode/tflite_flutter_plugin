@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'dart:io';
+import 'package:path/path.dart' as dart_path;
 
 const Set<String> _supported = {'linux', 'mac', 'win'};
 String pathToBinaries = '';
@@ -34,7 +35,7 @@ DynamicLibrary tflitelib = () {
   } else if (Platform.isIOS) {
     return DynamicLibrary.process();
   } else {
-    var binaryPath = '$pathToBinaries/$binaryName';
+    var binaryPath = dart_path.join(pathToBinaries, binaryName); // '$pathToBinaries/$binaryName';
     var binaryFilePath = Uri(path: binaryPath).toFilePath();
     return DynamicLibrary.open(binaryFilePath);
   }
