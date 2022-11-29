@@ -10,10 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  path: ^1.6.2
+  path: ^1.8.0
   quiver: ^3.0.0
-  ffi: ^1.0.0
-  path_provider: ^2.0.7
+  ffi: ^2.0.0
+  path_provider: ^2.0.10
 
 
 dev_dependencies:
