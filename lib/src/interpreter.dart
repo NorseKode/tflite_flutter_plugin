@@ -66,7 +66,8 @@ class Interpreter {
   ///   return fileOnDevice;
   /// }
   /// ```
-  factory Interpreter.fromFile(File modelFile, String pathToBinariesFolder, {InterpreterOptions? options}) {
+  factory Interpreter.fromFile(File modelFile, String pathToBinariesFolder,
+      {InterpreterOptions? options}) {
     pathToBinaries = pathToBinariesFolder;
     final model = Model.fromFile(modelFile.path);
     final interpreter = Interpreter._create(model, options: options);
@@ -90,8 +91,12 @@ class Interpreter {
   ///       return rawBytes;
   ///   }
   /// ```
-  factory Interpreter.fromBuffer(Uint8List buffer,
-      {InterpreterOptions? options}) {
+  factory Interpreter.fromBuffer(
+    Uint8List buffer, {
+    InterpreterOptions? options,
+    String? pathToBinariesFolder,
+  }) {
+    pathToBinaries = pathToBinariesFolder ?? '';
     final model = Model.fromBuffer(buffer);
     final interpreter = Interpreter._create(model, options: options);
     model.delete();
@@ -315,5 +320,4 @@ class Interpreter {
 
   //TODO: (JAVA) void modifyGraphWithDelegate(Delegate delegate)
   //TODO: (JAVA) void resetVariableTensors()
-
 }
