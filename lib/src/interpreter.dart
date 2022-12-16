@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:ffi/ffi.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:quiver/check.dart';
 import 'package:tflite_flutter/src/bindings/dlib.dart';
 
@@ -116,7 +116,8 @@ class Interpreter {
 
   /// Get byte buffer
   static Future<Uint8List> _getBuffer(String assetFileName) async {
-    ByteData rawAssetFile = await rootBundle.load('assets/$assetFileName');
+    // ByteData rawAssetFile = await rootBundle.load('assets/$assetFileName');
+    ByteData rawAssetFile = await ByteData(100);
     final rawBytes = rawAssetFile.buffer.asUint8List();
     return rawBytes;
   }
